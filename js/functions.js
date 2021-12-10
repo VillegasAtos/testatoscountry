@@ -8,7 +8,14 @@ const getCountries = async () => {
 
 const writeTableCountries = (countries) => {
  
-  let html = `
+  let html = ` <div class="panel">
+        <div class="body">
+            <div class="input-group">
+                <label for="searchBox">Filtrar</label>
+                <input type="search" id="searchBox" placeholder="Filtrar...">
+            </div>
+        </div>
+    </div>
             <table class="table table-striped myTable" id="countryTable">
                 <thead>
                     <tr>
@@ -44,6 +51,15 @@ const writeTableCountries = (countries) => {
                    </table>
                 `;
   $("#root").append(html);
-       paginate.init('.myTable');
+     let options = {
+        numberPerPage:5, //Cantidad de datos por pagina
+        goBar:true, //Barra donde puedes digitar el numero de la pagina al que quiere ir
+        pageCounter:true, //Contador de paginas, en cual estas, de cuantas paginas
+    };
+
+    let filterOptions = {
+        el:'#searchBox' //Caja de texto para filtrar, puede ser una clase o un ID
+    };
+       paginate.init('.myTable',options,filterOptions);
 };
 
