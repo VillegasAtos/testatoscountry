@@ -32,19 +32,23 @@ const writeTableCountries = (countries) => {
                 <tbody>`;
 
   countries.map(
-    (country) =>
+    (country) =>{
+      if(country.languages===undefined){
+        country.languages='No languages';
+      }else{
+        country.languages=Object.values(country.languages);
+      }
       (html += `<tr class="trWikki" name='${country.name.common}' code='${country.cca3}'>
                             <td>${country.name.official}</td>
                             <td>${country.capital}</td>
                             <td>${country.region}</td>
-                            <td>{
-                            }
-                                <a href='' onClick={(e) => getLanguages(e, hasValue(country, 'languages') ? Object.values(country.languages) : 'No language')}>View languages</a>
+                            <td>                            
+                                <a href='#' class="btnLanguages" languages="${country.languages}">View languages</a>
                             </td>
                             <td>${country.population}</td>
                             <td><img src=${country.flags.png} alt="" width="70" height="35" /></td>
                         </tr>`)
-  );
+    });
   html += `
                 </tbody>
                    </table>
@@ -90,5 +94,6 @@ const writeTableBorder = (borders) => {
   html += `
                 </tbody>
             </table>`;
+  $(".table-bordered").remove();
   $("#root").append(html);
 };

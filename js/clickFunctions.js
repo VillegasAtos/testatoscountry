@@ -44,15 +44,52 @@ $(document).on("click", "#btnBorder", async function () {
         border.lat = latlng[0];
         border.lng = latlng[1];
       } catch (error) {}
-     //const response = await axios.get(`https://restcountries.com/v3.1/alpha/${border.code}`);
       return border;
     })
   );
   console.log(borders);
   writeTableBorder(borders);
 });
+$(document).on("click", ".trTableBorder", async  function ()  {
+const lat=$(this).attr("lat");
+const lng=$(this).attr("lng");
+console.log(lat,lng);
+  bootbox.alert({
+    message:`<div id="maps"style="width: auto; height: 550px; position: relative; overflow: hidden;"></div>`,
+    size: "large",
+    title:"mapa"
+  });
+initMap(lat,lng);
+});
 
-$(document).on("click", ".trTableBorder", async function () {
-  alert("entraste");
+
+$(document).on("click", ".btnLanguages", async function () {
+ const languages=$(this).attr("languages");
+ let li="";
+ let flag=false;
+ 
+languages.split(",").forEach((language)=>{
+
+  li+=`<li>${language}</li>`
 
 });
+ //console.log(languages);
+ //languages.map(async (language)=>{
+//console.log("ji"); 
+//});
+  bootbox.alert({
+   message:`<ul><li>${li}</li></ul>`,
+    size: "small",
+    title:"mapa"
+ });
+});
+
+
+
+function initMap(lat,lng) {
+  console.log(lat,lng);
+    map = new google.maps.Map(document.getElementById("maps"), {
+        center: { lat: parseInt(lat), lng: parseInt(lng) },
+        zoom: 4,
+    });
+}
