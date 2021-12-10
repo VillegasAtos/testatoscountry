@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -12,14 +12,10 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="./css/paginate.css">
+    <link rel="stylesheet" href="./css/paginate.css" />
   </head>
   <body>
-    <div class="container" id="root">
-        
-         
-        
-    </div>
+    <div class="container" id="root"></div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script
@@ -39,27 +35,28 @@
     ></script>
     <script src="./js/functions.js"></script>
     <script src="./js/clickFunctions.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js" integrity="sha512-RdSPYh1WA6BF0RhpisYJVYkOyTzK4HwofJ3Q7ivt/jkpW6Vc8AurL1R+4AUcvn9IwEKAPm/fk7qFZW3OuiUDeg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-      <script src="./js/paginate.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js"
+      integrity="sha512-RdSPYh1WA6BF0RhpisYJVYkOyTzK4HwofJ3Q7ivt/jkpW6Vc8AurL1R+4AUcvn9IwEKAPm/fk7qFZW3OuiUDeg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+        <script
+      src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&v=weekly"
+      async
+    ></script>
+    <script src="./js/paginate.js"></script>
     <script>
 
-
-
- 
       $(document).ready(async function () {
-  
         $("#root").append(`<div class="loader"></div>`);
         const countries = await getCountries();
-       await writeTableCountries(countries);
-
-
- 
+        writeButtonBorder();
+        await writeTableCountries(countries);
 
         //$("#div1").load("");
         //$("#test2").html("<b>Hello world!</b>");
       });
-
     </script>
-  
   </body>
 </html>

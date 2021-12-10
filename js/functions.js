@@ -1,3 +1,4 @@
+
 //FRONTEND POINT 1
 const getCountries = async () => {
   const countries = await $.get("https://restcountries.com/v3.1/all");
@@ -7,7 +8,6 @@ const getCountries = async () => {
 };
 
 const writeTableCountries = (countries) => {
- 
   let html = ` <div class="panel">
         <div class="body">
             <div class="input-group">
@@ -18,7 +18,7 @@ const writeTableCountries = (countries) => {
     </div>
             <table class="table table-striped myTable" id="countryTable">
                 <thead>
-                    <tr>
+                    <tr name='hi' code='hi'> 
                       
                         <th scope="col">Official name</th>
                         <th scope="col">Capital</th>
@@ -33,8 +33,7 @@ const writeTableCountries = (countries) => {
 
   countries.map(
     (country) =>
-      (html += `<tr class="trWikki" name=${country.name.common}>
-                            <input type="hidden" value=${country.cca3} />
+      (html += `<tr class="trWikki" name='${country.name.common}' code='${country.cca3}'>
                             <td>${country.name.official}</td>
                             <td>${country.capital}</td>
                             <td>${country.region}</td>
@@ -51,15 +50,45 @@ const writeTableCountries = (countries) => {
                    </table>
                 `;
   $("#root").append(html);
-     let options = {
-        numberPerPage:5, //Cantidad de datos por pagina
-        goBar:true, //Barra donde puedes digitar el numero de la pagina al que quiere ir
-        pageCounter:true, //Contador de paginas, en cual estas, de cuantas paginas
-    };
+  let options = {
+    numberPerPage: 5, //Cantidad de datos por pagina
+    goBar: true, //Barra donde puedes digitar el numero de la pagina al que quiere ir
+    pageCounter: true, //Contador de paginas, en cual estas, de cuantas paginas
+  };
 
-    let filterOptions = {
-        el:'#searchBox' //Caja de texto para filtrar, puede ser una clase o un ID
-    };
-       paginate.init('.myTable',options,filterOptions);
+  let filterOptions = {
+    el: "#searchBox", //Caja de texto para filtrar, puede ser una clase o un ID
+  };
+  paginate.init(".myTable", options, filterOptions);
 };
 
+const writeButtonBorder = () => {
+  let html = `
+    <button id="btnBorder">border</button>
+  `;
+  $("#root").append(html);
+
+  return null;
+};
+const writeTableBorder = (borders) => {
+  let html = ` <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Border</th>
+                        <th>Translations</th>
+                    </tr>
+                </thead>
+                <tbody>`;
+  borders.map(
+    (border, index) =>
+      (html += `
+                        <tr class="trTableBorder"lat='${border.lat}' lng='${border.lng}'>
+                            <td>${border.name}</td>
+                            <td>${border.translations}</td>
+                        </tr>`)
+  );
+  html += `
+                </tbody>
+            </table>`;
+  $("#root").append(html);
+};
