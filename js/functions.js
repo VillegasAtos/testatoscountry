@@ -2,7 +2,7 @@
 const getCountries = async () => {
   const countries = await $.get("https://restcountries.com/v3.1/all");
   // console.log(countries);
-  
+  countries.sort((a, b) => a.name.official.localeCompare(b.name.official));
   $(".loader").hide();
   return countries;
 };
