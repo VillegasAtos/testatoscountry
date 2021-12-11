@@ -1,45 +1,44 @@
-
 //FRONTEND POINT 1
 const getCountries = async () => {
-  const countries = await $.get("https://restcountries.com/v3.1/all");
+  countries = await $.get("https://restcountries.com/v3.1/all");
   countries.sort((a, b) => a.name.official.localeCompare(b.name.official));
+  countries.map((country) => {
+    country.name = country.name.official;
+    if(country.capital===undefined){
+      country.capital="No capital";
+    }
+    if(country.languages===undefined){
+      country.languages="No languages";
+    }
+  });
   $(".loader").hide();
   return countries;
 };
 
 const writeTableCountries = (countries) => {
   let html = ` <div class="panel">
-        <div class="body">
-            <div class="input-group">
-                <label for="searchBox">Filtrar</label>
-                <input type="search" id="searchBox" placeholder="Filtrar...">
-            </div>
-        </div>
     </div>
             <table class="table table-striped myTable" id="countryTable">
                 <thead>
                     <tr name='hi' code='hi'> 
-                      
-                        <th scope="col">Official name</th>
-                        <th scope="col">Capital</th>
-                        <th scope="col">Region</th>
-                        <th scope="col">Language </th>
-                        <th scope="col">Population</th>
-                        <th scope="col">Flag </th>
-                        <th scope="col">Wiki</th>
+                        <th scope="col" field="name" filter="yes">Official name</th>
+                        <th scope="col" field="capital" filter="yes">Capital</th>
+                        <th scope="col" field="region" filter="yes">Region</th>
+                        <th scope="col" field="language" filter="no">Language </th>
+                        <th scope="col" field="population" filter="yes">Population</th>
+                        <th scope="col" field="flag" filter="no">Flag </th>
                     </tr>
                 </thead>
                 <tbody>`;
 
-  countries.map(
-    (country) =>{
-      if(country.languages===undefined){
-        country.languages='No languages';
-      }else{
-        country.languages=Object.values(country.languages);
-      }
-      (html += `<tr class="trWikki" name='${country.name.common}' code='${country.cca3}'>
-                            <td>${country.name.official}</td>
+  countries.map((country) => {
+    if (country.languages === undefined) {
+      country.languages = "No languages";
+    } else {
+      country.languages = Object.values(country.languages);
+    }
+    html += `<tr class="trWikki" name='${country.name}' code='${country.cca3}'>
+                            <td>${country.name}</td>
                             <td>${country.capital}</td>
                             <td>${country.region}</td>
                             <td>                            
@@ -47,8 +46,8 @@ const writeTableCountries = (countries) => {
                             </td>
                             <td>${country.population}</td>
                             <td><img src=${country.flags.png} alt="" width="70" height="35" /></td>
-                        </tr>`)
-    });
+                        </tr>`;
+  });
   html += `
                 </tbody>
                    </table>
@@ -59,11 +58,9 @@ const writeTableCountries = (countries) => {
     goBar: true, //Barra donde puedes digitar el numero de la pagina al que quiere ir
     pageCounter: true, //Contador de paginas, en cual estas, de cuantas paginas
   };
-
-  let filterOptions = {
-    el: "#searchBox", //Caja de texto para filtrar, puede ser una clase o un ID
-  };
-  paginate.init(".myTable", options, filterOptions);
+  try {
+    paginate.init(".myTable", options);
+  } catch (error) {}
 };
 
 const writeButtonBorder = () => {
@@ -95,5 +92,20 @@ const writeTableBorder = (borders) => {
                 </tbody>
             </table>`;
   $(".table-bordered").remove();
+  $("#root").append(html);
+};
+
+const writeFilter = () => {
+  let html = `<div class="input-group mb-3 ">
+  <select id="selectFilter" class="form-select" aria-label="Default select example mx-2">
+  <option selected value="noselected">Open this select menu</option>
+  <option value="name" secondfilter="official">Official Name</option>
+  <option value="capital">Capital</option>
+  <option value="region">Region</option>
+  <option value="population">Population</option>
+</select>
+  <span class=" input-group-text" id="basic-addon1">Search</span>
+  <input id="inputFilter" type="text" class="form-control" placeholder="Search" >
+</div>`;
   $("#root").append(html);
 };
