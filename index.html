@@ -1,4 +1,3 @@
-
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -16,7 +15,10 @@
   </head>
   <body>
     <div class="container" id="root"></div>
-    <div id="map" style="width: auto; height: 550px; position: relative; overflow: hidden;"></div>
+    <div
+      id="map"
+      style="width: auto; height: 550px; position: relative; overflow: hidden"
+    ></div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script
@@ -34,14 +36,14 @@
       integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
       crossorigin="anonymous"
     ></script>
- 
+
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js"
       integrity="sha512-RdSPYh1WA6BF0RhpisYJVYkOyTzK4HwofJ3Q7ivt/jkpW6Vc8AurL1R+4AUcvn9IwEKAPm/fk7qFZW3OuiUDeg=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
-    
+
     <!--     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUFBkROE0an_xJGan5DNDK17EiR8UlTSE&callback=initMap&v=weekly"
       async
@@ -49,21 +51,19 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUFBkROE0an_xJGan5DNDK17EiR8UlTSE"></script>
     <script src="./js/map.js"></script>
     <script src="./js/paginate.js"></script>
-       <script src="./js/functions.js"></script>
+    <script src="./js/functions.js"></script>
     <script src="./js/clickFunctions.js"></script>
     <script>
-
+      let countries = [];
       $(document).ready(async function () {
         $("#root").append(`<div class="loader"></div>`);
         const countries = await getCountries();
         writeButtonBorder();
+        writeFilter();
         await writeTableCountries(countries);
-
         //$("#div1").load("");
         //$("#test2").html("<b>Hello world!</b>");
-        $('#root').click(() => {
-  
-})
+        $("#root").click(() => {});
       });
     </script>
   </body>
