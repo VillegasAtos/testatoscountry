@@ -4,11 +4,11 @@ const getCountries = async () => {
   countries.sort((a, b) => a.name.official.localeCompare(b.name.official));
   countries.map((country) => {
     country.name = country.name.official;
-    if(country.capital===undefined){
-      country.capital="No capital";
+    if (country.capital === undefined) {
+      country.capital = "No capital";
     }
-    if(country.languages===undefined){
-      country.languages="No languages";
+    if (country.languages === undefined) {
+      country.languages = "No languages";
     }
   });
   $(".loader").hide();
