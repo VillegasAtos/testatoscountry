@@ -65,7 +65,7 @@ const writeTableCountries = (countries) => {
 
 const writeButtonBorder = () => {
   let html = `
-    <button id="btnBorder">border</button>
+    <button id="btnBorder" class="btn btn-primary px-5 mt-5 mb-2">border</button>
   `;
   $("#root").append(html);
 

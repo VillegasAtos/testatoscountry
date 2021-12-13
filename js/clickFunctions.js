@@ -74,7 +74,7 @@ $(document).on("click", ".btnLanguages", async function () {
   //console.log("ji");
   //});
   bootbox.alert({
-    message: `<ul><li>${li}</li></ul>`,
+    message: `<ul>${li}</ul>`,
     size: "small",
     title: "mapa",
   });
