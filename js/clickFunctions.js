@@ -74,7 +74,7 @@ $(document).on("click", ".btnLanguages", async function () {
   //console.log("ji");
   //});
   bootbox.alert({
-    message: `<ul><li>${li}</li></ul>`,
+    message: `<ul>${li}</ul>`,
     size: "small",
     title: "mapa",
   });
@@ -97,12 +97,12 @@ $(document).on("keypress", "#inputFilter", function () {
   if (filter.length > 1) {
     let countries2 = [];
     countries.map((country) => {
-          header.map((cheader) => {
-            if(country[cheader]===undefined || country[cheader]===null){
-              console.log("entraste al indefinido" + cheader);
-              return;
-            }
-          });
+      header.map((cheader) => {
+        if (country[cheader] === undefined || country[cheader] === null) {
+          console.log("entraste al indefinido" + cheader);
+          return;
+        }
+      });
       if (selectFilter === "noselected") {
         console.log("entraste al noselected");
         let flag = false;

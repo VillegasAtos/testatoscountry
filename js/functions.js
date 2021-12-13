@@ -4,11 +4,11 @@ const getCountries = async () => {
   countries.sort((a, b) => a.name.official.localeCompare(b.name.official));
   countries.map((country) => {
     country.name = country.name.official;
-    if(country.capital===undefined){
-      country.capital="No capital";
+    if (country.capital === undefined) {
+      country.capital = "No capital";
     }
-    if(country.languages===undefined){
-      country.languages="No languages";
+    if (country.languages === undefined) {
+      country.languages = "No languages";
     }
   });
   $(".loader").hide();
@@ -65,7 +65,7 @@ const writeTableCountries = (countries) => {
 
 const writeButtonBorder = () => {
   let html = `
-    <button id="btnBorder">border</button>
+    <button id="btnBorder" class="btn btn-primary px-5 mt-5 mb-2">border</button>
   `;
   $("#root").append(html);
 
